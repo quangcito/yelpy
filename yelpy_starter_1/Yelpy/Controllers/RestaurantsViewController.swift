@@ -9,7 +9,7 @@
 import UIKit
 import AlamofireImage
 
-class RestaurantsViewController: UIViewController {
+class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // ––––– TODO: Add storyboard Items (i.e. tableView + Cell + configurations for Cell + cell outlets)
     // ––––– TODO: Next, place TableView outlet here
@@ -24,14 +24,19 @@ class RestaurantsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     
     // ––––– TODO: Get data from API helper and retrieve restaurants
     func getAPIData() {
-        API.getRestaurants() { (restau)
-            
+        API.getRestaurants() { (restaurants) in
+            guard let restaurants = restaurants else {
+                return
+            }
+            print(restaurants)
+            self.restaurantsArray = restaurants
         }
     }
 
