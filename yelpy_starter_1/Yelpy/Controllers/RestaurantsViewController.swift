@@ -39,7 +39,29 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
             self.restaurantsArray = restaurants
         }
     }
-
+    
+    // Protocol Stubs
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return restaurantsArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // Create Restaurant Cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Restaurant Cell") as! RestaurantCell
+        
+        let restaurant =restaurantsArray[indexPath.row]
+        
+        // Set Label to restaurant name for each cell
+        cell.label.next = restaurant["name"] as? String ?? ""
+        
+        // Set Image of restaurant
+        if let imageUrlString = restaurant["image_url"] as? String {
+            let imageUrl = URL(string: imageUrlString)
+            cell.restaurantImage.af.setImage(withURL: imageUrl!)
+        }
+        
+        return cell
+    }
 }
 
 // ––––– TODO: Create tableView Extension and TableView Functionality
