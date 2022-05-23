@@ -26,6 +26,8 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = 150
+        getAPIData()
     }
     
     
@@ -37,6 +39,7 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
             }
             print(restaurants)
             self.restaurantsArray = restaurants
+            self.tableView.reloadData() // reload data!
         }
     }
     
@@ -47,12 +50,12 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Create Restaurant Cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Restaurant Cell") as! RestaurantCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantCell") as! RestaurantCell
         
-        let restaurant =restaurantsArray[indexPath.row]
+        let restaurant = restaurantsArray[indexPath.row]
         
         // Set Label to restaurant name for each cell
-        cell.label.next = restaurant["name"] as? String ?? ""
+        cell.label.text = restaurant["name"] as? String ?? ""
         
         // Set Image of restaurant
         if let imageUrlString = restaurant["image_url"] as? String {
