@@ -16,7 +16,7 @@ struct API {
     static func getRestaurants(completion: @escaping ([[String:Any]]?) -> Void) {
         
         // ––––– TODO: Add your own API key!
-        let apikey = ""
+        let apikey = "ToTy5dl-m1hYocmkIsGPw9VORHzBEWrtJV-ejwCuCGMGEizsWTGfu6h9fRdAr5NlJqxL3Lh-lekwwgNysygNG_R-aKrdsRCHUnH4EVd3rlFR_-0TGzTHix0jhGWLYnYx"
         
         // Coordinates for San Francisco
         let lat = 37.773972
@@ -40,10 +40,14 @@ struct API {
         
 
                 // ––––– TODO: Get data from API and return it using completion
-                
-                
-                
-                return completion([[:]])
+                print(data)
+            
+                // 1. Convert ison response to a dictionarv
+                let dataDictionary = try! JSONSerialization.json0bject (with: data, options: []) as! [String: Any]
+                // 2. Grab the businesses data and convert it to an arrav of dictionaries for each restaurant
+                let restaurants = dataDictionary["businesses"] as! [[String: Any]]
+                // 3. completion is an escaping method which allows the data to be used outside of the closure
+                return completion(restaurants)
                 
                 }
             }

@@ -42,6 +42,10 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="label" destination="w6D-iH-VZj" id="aJC-Vx-SaU"/>
+                                            <outlet property="restaurantImage" destination="CBo-P7-kkd" id="Brb-Hc-l5v"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

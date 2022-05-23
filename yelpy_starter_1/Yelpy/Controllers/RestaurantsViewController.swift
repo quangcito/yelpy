@@ -17,7 +17,7 @@ class RestaurantsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // –––––– TODO: Initialize restaurantsArray
-    
+    var restaurantsArray: [[String:Any?]] = []
     
     
     // ––––– TODO: Add tableView datasource + delegate
@@ -29,7 +29,11 @@ class RestaurantsViewController: UIViewController {
     
     
     // ––––– TODO: Get data from API helper and retrieve restaurants
-    
+    func getAPIData() {
+        API.getRestaurants() { (restau)
+            
+        }
+    }
 
 }
 
